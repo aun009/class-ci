@@ -22,4 +22,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            ls
+            cd ~/class-ci || git clone https://github.com/aun009/class-ci.git ~/class-ci && cd ~/class-ci
+            git pull origin master
+            npm install
+            npm run build
+            pm2 restart class-ci || pm2 start npm --name "class-ci" -- start
