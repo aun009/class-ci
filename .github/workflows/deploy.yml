@@ -11,10 +11,13 @@ jobs:
     name: Push to EC2
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: SSH into EC2 and deploy
-        uses: appleboy/ssh-action@v1
+        uses: appleboy/ssh-action@v1.2.0
         with:
-          host: 152.58.16.206
+          host: 52.66.100.58
           username: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
